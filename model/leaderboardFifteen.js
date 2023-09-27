@@ -13,7 +13,6 @@ const leaderboardFifteenSchema = new mongoose.Schema(
   {
     collection: "leaderboard15",
     versionKey: false,
-    _id: false,
   }
 );
 

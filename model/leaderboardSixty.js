@@ -13,7 +13,6 @@ const leaderboardSixtySchema = new mongoose.Schema(
   { 
     collection: "leaderboard60",
     versionKey: false,
-    _id: false,
   }
 );
 
