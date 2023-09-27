@@ -5,8 +5,8 @@ async function pushDataToDatabase(lbFifteen, lbSixty) {
     console.log("Pushing data to database");
     console.log(lbFifteen.length, " - 15 sec", lbSixty.length, " - 60 sec");
 
-    saveEntriesToDatabaseFifteen(lbFifteen);
-    saveEntriesToDatabaseSixty(lbSixty);
+    await saveEntriesToDatabaseFifteen(lbFifteen);
+    await saveEntriesToDatabaseSixty(lbSixty);
 }
 
 async function saveEntriesToDatabaseSixty(lbSixty) {
