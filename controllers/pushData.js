@@ -24,10 +24,7 @@ async function saveEntriesToDatabaseSixty(lbSixty) {
                 uid: element.uid,
                 r: element.rank
             });
-            count++; // Increment count for each successful entry
-            if (count % 100 == 0){
-                console.log(`Successfully saved ${count} entries to leaderboard60 database`);
-            }
+            count++;
         } catch (error) {
             console.log(error);
             errors.push(error);
@@ -49,7 +46,7 @@ async function saveEntriesToDatabaseFifteen(lbFifteen) {
     let count = 0;
     let errors = [];
 
-    const savePromises = lbSixty.map(async (element) => {
+    const savePromises = lbFifteen.map(async (element) => {
         try {
             const newEntry = await LeaderboardFifteen.create({
                 wpm: element.wpm,
@@ -60,10 +57,7 @@ async function saveEntriesToDatabaseFifteen(lbFifteen) {
                 uid: element.uid,
                 r: element.rank
             });
-            count++; // Increment count for each successful entry
-            if (count % 100 == 0){
-                console.log(`Successfully saved ${count} entries to leaderboard15 database`);
-            }
+            count++;
         } catch (error) {
             console.log(error);
         }
