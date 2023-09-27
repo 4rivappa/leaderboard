@@ -11,8 +11,9 @@ async function pushDataToDatabase(lbFifteen, lbSixty) {
 
 async function saveEntriesToDatabaseSixty(lbSixty) {
     let count = 0;
+    let errors = [];
 
-    for (const element of lbSixty) {
+    const savePromises = lbSixty.map(async (element) => {
         try {
             const newEntry = await LeaderboardSixty.create({
                 wpm: element.wpm,
@@ -29,7 +30,16 @@ async function saveEntriesToDatabaseSixty(lbSixty) {
             }
         } catch (error) {
             console.log(error);
+            errors.push(error);
         }
+    });
+
+    await Promise.all(savePromises);
+
+    if (errors.length > 0) {
+        console.error(`Encountered ${errors.length} errors while saving to leaderboard60 database.`);
+    } else {
+        console.log(`Successfully saved ${count} entries to leaderboard60 database`);
     }
 
     console.log(`Successfully saved ${count} entries to leaderboard60 database`);
@@ -37,8 +47,9 @@ async function saveEntriesToDatabaseSixty(lbSixty) {
 
 async function saveEntriesToDatabaseFifteen(lbFifteen) {
     let count = 0;
+    let errors = [];
 
-    for (const element of lbFifteen) {
+    const savePromises = lbSixty.map(async (element) => {
         try {
             const newEntry = await LeaderboardFifteen.create({
                 wpm: element.wpm,
@@ -56,6 +67,14 @@ async function saveEntriesToDatabaseFifteen(lbFifteen) {
         } catch (error) {
             console.log(error);
         }
+    });
+
+    await Promise.all(savePromises);
+
+    if (errors.length > 0) {
+        console.error(`Encountered ${errors.length} errors while saving to leaderboard15 database.`);
+    } else {
+        console.log(`Successfully saved ${count} entries to leaderboard15 database`);
     }
 
     console.log(`Successfully saved ${count} entries to leaderboard15 database`);
